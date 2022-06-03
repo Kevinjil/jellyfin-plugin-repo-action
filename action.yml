@@ -1,0 +1,23 @@
+name: 'Jellyfin plugin repo'
+description: 'A GitHub action which generates a Jellyfin plugin repository manifest file as a GitHub action.'
+inputs:
+  githubToken:
+    description: 'The GitHub authentication token to use in the action.'
+    required: true
+  repoOwner:
+    description: 'The GitHub user or organisation that owns the plugin source repo.'
+    required: true
+  repoName:
+    description: 'The GitHub repository name of the plugin source repo.'
+    required: true
+  pagesBranch:
+    description: 'The GitHub pages source branch on which the repository file is committed.';
+    required: true
+    default: 'gh-pages'
+  pagesFile:
+    description: 'The file path to which the repository json file is committed.'
+    required: true
+    default: 'repository.json'
+runs:
+  using: 'node16'
+  main: 'main.js'
