@@ -1,5 +1,6 @@
 name: 'Jellyfin plugin repo'
 description: 'A GitHub action which generates a Jellyfin plugin repository manifest file as a GitHub action.'
+author: 'Kevinjil'
 inputs:
   githubToken:
     description: 'The GitHub authentication token to use in the action.'
