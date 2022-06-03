@@ -12,7 +12,7 @@ inputs:
     description: 'The GitHub repository name of the plugin source repo.'
     required: true
   pagesBranch:
-    description: 'The GitHub pages source branch on which the repository file is committed.';
+    description: 'The GitHub pages source branch on which the repository file is committed.'
     required: false
     default: 'gh-pages'
   pagesFile:
