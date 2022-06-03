@@ -13,11 +13,11 @@ inputs:
     required: true
   pagesBranch:
     description: 'The GitHub pages source branch on which the repository file is committed.';
-    required: true
+    required: false
     default: 'gh-pages'
   pagesFile:
     description: 'The file path to which the repository json file is committed.'
-    required: true
+    required: false
     default: 'repository.json'
 runs:
   using: 'node16'
