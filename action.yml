@@ -18,4 +18,4 @@ inputs:
     default: 'repository.json'
 runs:
   using: 'node16'
-  main: 'main.js'
+  main: 'dist/index.js'

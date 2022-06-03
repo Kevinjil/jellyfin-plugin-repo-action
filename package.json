@@ -1,8 +1,21 @@
 {
+  "name": "jellyfin-plugin-repo-action",
+  "author": {
+    "name": "Kevinjil"
+  },
+  "scripts": {
+    "prepare": "ncc build main.js -o dist -m --source-map --license LICENSE"
+  },
+  "version": "0.2.1",
+  "description": "A GitHub action which generates a Jellyfin plugin repository manifest file as a GitHub action.",
+  "main": "main.js",
   "dependencies": {
     "@actions/core": "^1.8.2",
     "@actions/github": "^5.0.3",
     "json-stable-stringify": "^1.0.1",
     "yaml": "^2.1.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.34.0"
   }
 }
