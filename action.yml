@@ -5,11 +5,8 @@ inputs:
   githubToken:
     description: 'The GitHub authentication token to use in the action.'
     required: true
-  repoOwner:
-    description: 'The GitHub user or organisation that owns the plugin source repo.'
-    required: true
-  repoName:
-    description: 'The GitHub repository name of the plugin source repo.'
+  repository:
+    description: 'The GitHub repository name of the plugin source repo in format "user/repo-name".'
     required: true
   pagesBranch:
     description: 'The GitHub pages source branch on which the repository file is committed.'

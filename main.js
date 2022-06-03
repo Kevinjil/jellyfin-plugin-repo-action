@@ -48,13 +48,13 @@ async function commit(octokit, repo, branch, path, message, content) {
 async function run() {
   // Get input values.
   const githubToken = core.getInput('githubToken', { required: true });
-  const repoOwner = core.getInput('repoOwner', { required: true });
-  const repoName = core.getInput('repoName', { required: true });
+  const repository = core.getInput('repository', { required: true });
   const pagesBranch = core.getInput('pagesBranch', { required: true });
   const pagesFile = core.getInput('pagesFile', { required: true });
 
   const octokit = github.getOctokit(githubToken);
-  const repo = { owner: repoOwner, repo: repoName };
+  const repoParts = repository.split('/')
+  const repo = { owner: repoParts[0], repo: repoParts[1] };
 
   // Get the global plugin properties using the build yaml file.
   const buildConfig = await getYaml(octokit, repo, 'build.yaml');
