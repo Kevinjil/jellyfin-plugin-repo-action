@@ -119,7 +119,7 @@ async function run() {
 
   // Commit a Jellyfin plugin repository file.
   const plugin_repo = [plugin]
-  const json = stringify([plugin_repo], { space: 2 });
+  const json = stringify(plugin_repo, { space: 2 });
   await commit(
     octokit,
     repo,
