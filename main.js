@@ -27,9 +27,11 @@ async function getYaml(octokit, repo, path, ref = undefined) {
  * @param {string} content The file content to commit.
  */
 async function commit(octokit, repo, branch, path, message, content) {
+  const { data: current } = await octokit.rest.repos.getContent({...repo, path, ref: `heads/${branch}`})
   const contentEncoded = Buffer.from(content).toString('base64');
   await octokit.rest.repos.createOrUpdateFileContents({
     ...repo,
+    sha: current.sha,
     branch,
     path,
     message,
