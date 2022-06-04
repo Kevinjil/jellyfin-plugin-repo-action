@@ -1,4 +1,4 @@
-name: 'Jellyfin plugin repo'
+name: 'Jellyfin plugin repo (matt)'
 description: 'A GitHub action which generates a Jellyfin plugin repository manifest file as a GitHub action.'
 author: 'Kevinjil'
 inputs:
