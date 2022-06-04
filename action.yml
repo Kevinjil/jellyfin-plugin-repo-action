@@ -16,6 +16,10 @@ inputs:
     description: 'The file path to which the repository json file is committed.'
     required: false
     default: 'repository.json'
+  ignorePrereleases:
+    description: 'Whether pre-releases should be ignored when generating the repository file'
+    required: false
+    default: "false"
 runs:
   using: 'node16'
   main: 'dist/index.js'
