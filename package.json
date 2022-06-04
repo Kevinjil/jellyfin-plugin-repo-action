@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "ncc build main.js -o dist -m --source-map --license LICENSE"
   },
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "A GitHub action which generates a Jellyfin plugin repository manifest file as a GitHub action.",
   "main": "main.js",
   "dependencies": {

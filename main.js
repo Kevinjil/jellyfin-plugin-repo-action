@@ -53,10 +53,7 @@ async function run() {
   const repository = core.getInput('repository', { required: true });
   const pagesBranch = core.getInput('pagesBranch', { required: true });
   const pagesFile = core.getInput('pagesFile', { required: true });
-  var ignorePrereleasesIn =  core.getInput('ignorePrereleases', { required: true });
-
-  // Boolean inputs aren't supported https://github.com/actions/runner/issues/1483
-  const ignorePrereleases = (ignorePrereleasesIn == "true" || ignorePrereleasesIn == true);
+  const ignorePrereleases =  core.getBooleanInput('ignorePrereleases', { required: true });
 
   const octokit = github.getOctokit(githubToken);
   const repoParts = repository.split('/')

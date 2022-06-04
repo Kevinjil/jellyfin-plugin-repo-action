@@ -17,7 +17,7 @@ inputs:
     required: false
     default: 'repository.json'
   ignorePrereleases:
-    description: 'Whether pre-releases should be ignored when generating the repository file'
+    description: 'Whether pre-releases should be ignored when generating the repository file.'
     required: false
     default: "false"
 runs:
