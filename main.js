@@ -69,11 +69,13 @@ async function run() {
     if (release.draft) continue;
     if (release.prerelease && ignorePrereleases) continue;
 
-    releaseConfig = await getYaml(octokit, repo, 'build.yaml', release.tag_name);
+    // Use release config from tag
+    let releaseConfig = await getYaml(octokit, repo, 'build.yaml', release.tag_name);
 
     let checksum = ''
     let sourceUrl = ''
     for (asset of release.assets) {
+
       if (asset.name.endsWith('.zip')) {
         // We have found the download url of the release.
         sourceUrl = asset.browser_download_url
@@ -86,6 +88,15 @@ async function run() {
           checksum = Buffer.from(response.data, 0, 32).toString();
         } else {
           console.error('Failed to download plugin checksum: HTTP', response.status);
+        }
+      }
+      // If build.yaml given as asset, prefer that for release config
+
+      if ( asset.name == "build.yaml" ) {
+        console.log(`Found release asset build.yaml, using that instead of ${release.tag_name}/build.yaml`);
+        const response = await octokit.request(asset.browser_download_url);
+        if (response.status === 200) {
+          releaseConfig = yaml.parse(Buffer.from(response.data).toString('UTF-8'));
         }
       }
     }
