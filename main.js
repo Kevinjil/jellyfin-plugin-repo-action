@@ -27,7 +27,7 @@ async function getYaml(octokit, repo, path, ref = undefined) {
  * @param {string} content The file content to commit.
  */
 async function commit(octokit, repo, branch, path, message, content) {
-  const { data: current } = await octokit.rest.repos.getContent({...repo, path, ref: `heads/${branch}`})
+  const { data: current } = await octokit.rest.repos.getContent({ ...repo, path, ref: `heads/${branch}` })
   const contentEncoded = Buffer.from(content).toString('base64');
   await octokit.rest.repos.createOrUpdateFileContents({
     ...repo,
@@ -53,7 +53,7 @@ async function run() {
   const repository = core.getInput('repository', { required: true });
   const pagesBranch = core.getInput('pagesBranch', { required: true });
   const pagesFile = core.getInput('pagesFile', { required: true });
-  const ignorePrereleases =  core.getBooleanInput('ignorePrereleases', { required: true });
+  const ignorePrereleases = core.getBooleanInput('ignorePrereleases', { required: true });
 
   const octokit = github.getOctokit(githubToken);
   const repoParts = repository.split('/')
@@ -90,13 +90,15 @@ async function run() {
           console.error('Failed to download plugin checksum: HTTP', response.status);
         }
       }
-      // If build.yaml given as asset, prefer that for release config
 
-      if ( asset.name == "build.yaml" ) {
+      // If build.yaml given as asset, prefer that for release config.
+      if (asset.name == "build.yaml") {
         console.log(`Found release asset build.yaml, using that instead of ${release.tag_name}/build.yaml`);
         const response = await octokit.request(asset.browser_download_url);
         if (response.status === 200) {
           releaseConfig = yaml.parse(Buffer.from(response.data).toString('UTF-8'));
+        } else {
+          console.error('Failed to download plugin build configuration: HTTP', response.status);
         }
       }
     }
