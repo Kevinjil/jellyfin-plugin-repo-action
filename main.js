@@ -132,6 +132,10 @@ async function run() {
     'versions': versions,
   }
 
+  if (buildConfig.imageUrl) {
+    plugin.imageUrl = buildConfig.imageUrl;
+  }
+
   // Commit a Jellyfin plugin repository file.
   const plugin_repo = [plugin]
   const json = stringify(plugin_repo, { space: 2 });
