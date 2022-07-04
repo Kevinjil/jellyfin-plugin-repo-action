@@ -1,0 +1,27 @@
+name: ncc build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: setup git config
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - name: Setup dependencies
+      run: npm ci
+    - name: Run ncc
+      run: npm run prepare
+    - name: Commit and push results
+      run: |
+        git add dist
+        git commit -m "Run ncc build."
+        git push
